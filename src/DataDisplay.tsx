@@ -104,6 +104,9 @@ const DataDisplay: React.FC<DataDisplayProps> = ({
             cy={(cy) => {
               cy.on('tap', 'node', cyEventHandler);
               cy.on('add', 'node', cyNodeEventUpdate);
+
+              cy.maxZoom(1.5);
+              cy.minZoom(0.15);
             }}
             className="cyto"
             stylesheet={[
