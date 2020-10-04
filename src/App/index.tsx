@@ -8,7 +8,7 @@ import {
   FormControlLabel,
   ThemeProvider,
 } from '@material-ui/core';
-import { blue, lightBlue } from '@material-ui/core/colors';
+import { blue } from '@material-ui/core/colors';
 
 import DataDisplay from '../DataDisplay';
 import MappingBar from '../MappingBar';
@@ -18,7 +18,7 @@ import useGetPortals from './useGetPortals';
 import useGetZones from './useGetZones';
 
 function App() {
-  const [token, setToken] = useState<string>('');
+  const [token, setToken] = useState<string>('test');
   const [updateLayoutOnChange, setUpdateLayoutOnChange] = useState(true);
 
   const config = useGetConfig();
@@ -48,7 +48,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="app-container">
         <header>
-          <h1>Albion Mapper</h1>
+          <h1 className="main-header">Albion Mapper</h1>
         </header>
 
         <main className="layout">

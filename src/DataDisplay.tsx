@@ -31,6 +31,8 @@ const DataDisplay: React.FC<DataDisplayProps> = ({
   updateLayoutOnChange,
   onNodeClick,
 }) => {
+  const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
   const mapContainer = useRef<HTMLDivElement>(null);
   const [layout, setLayout] = useState('breadthfirst');
 
@@ -46,6 +48,15 @@ const DataDisplay: React.FC<DataDisplayProps> = ({
     (e: cytoscape.EventObject) => {
       onNodeClick(e.target.id());
       setActiveZoneName(e.target.id());
+
+      e.cy.nodes().forEach((n) => {
+        if (n.id() !== e.target.id()) {
+          n.style('borderWidth', '0');
+        } else {
+          n.style('borderColor', '#ea80fc');
+          n.style('borderWidth', '2');
+        }
+      });
     },
     [onNodeClick, setActiveZoneName]
   );
@@ -83,8 +94,6 @@ const DataDisplay: React.FC<DataDisplayProps> = ({
       },
     })),
   ];
-
-  const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   return (
     <>
