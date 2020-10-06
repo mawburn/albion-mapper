@@ -108,6 +108,7 @@ const DataDisplay: React.FC<DataDisplayProps> = ({
               cy.maxZoom(1.5);
               cy.minZoom(0.15);
             }}
+            style={{ height: '720px', width: '100%' }}
             className="cyto"
             stylesheet={[
               {
