@@ -108,6 +108,10 @@ const Cyto: FC<CytoProps> = ({ isDark, portals, zones }) => {
     }
   }, [size]);
 
+  useEffect(() => {
+    cy.current.style(graphStyle(isDark));
+  }, [isDark]);
+
   return (
     <div className="cyto">
       <div ref={containerRef} />

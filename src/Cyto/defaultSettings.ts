@@ -17,7 +17,8 @@ const defaultSettings = {
   layout: {
     name: 'cose-bilkent',
     nodeDimensionsIncludeLabels: true,
-    tile: false,
+    idealEdgeLength: 150,
+    fit: false,
   },
   headless: false,
   styleEnabled: true,
@@ -27,7 +28,7 @@ const defaultSettings = {
   motionBlurOpacity: 0.2,
   wheelSensitivity: 1,
   pixelRatio: 'auto',
-  padding: 1000,
+  fit: false,
 };
 
 export default defaultSettings;
