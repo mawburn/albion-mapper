@@ -1,7 +1,14 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
-import { ElementDefinition } from 'cytoscape';
-import React, { ChangeEvent, useCallback, useRef, useState } from 'react';
+import Cytoscape, { ElementDefinition } from 'cytoscape';
+import React, {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import CytoscapeComponent from 'react-cytoscapejs';
+
+import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 import { Portal, Zone } from './types';
 
@@ -34,10 +41,8 @@ const DataDisplay: React.FC<DataDisplayProps> = ({
   isDark,
   onNodeClick,
 }) => {
-  const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
   const mapContainer = useRef<HTMLDivElement>(null);
-  const [layout, setLayout] = useState('breadthfirst');
+  const [layout, setLayout] = useState('cose');
 
   const filteredZones = zones.filter(
     (z) => !!portals?.find((p) => p.source === z.name || p.target === z.name)
@@ -136,7 +141,11 @@ const DataDisplay: React.FC<DataDisplayProps> = ({
                 },
               },
             ]}
-            layout={{ name: layout }}
+            layout={{
+              name: 'cose',
+              componentSpacing: 150,
+              fit: false,
+            }}
           />
         ) : (
           <div className="cyto">Loading</div>

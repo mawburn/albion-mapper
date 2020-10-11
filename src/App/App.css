@@ -42,11 +42,6 @@
   flex-direction: column;
 }
 
-.cyto {
-  border: 1px solid #90a4ae;
-  border-radius: 4px;
-}
-
 .cyto-below {
   margin-top: 1rem;
 }

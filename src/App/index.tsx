@@ -18,6 +18,7 @@ import DarkModeToggle from './DarkModeToggle';
 import useGetConfig from './useGetConfig';
 import useGetPortals from './useGetPortals';
 import useGetZones from './useGetZones';
+import Cyto from '../Cyto';
 
 const prefersDark = localStorage.getItem('darkMode')
   ? localStorage.getItem('darkMode') !== 'false'
@@ -109,13 +110,14 @@ function App() {
           </aside>
           {(!!token || config?.publicRead) && (
             <div className="map-display">
-              <DataDisplay
+              <Cyto isDark={isDark} zones={zones} portals={portals} />
+              {/* <DataDisplay
                 zones={zones}
                 portals={portals}
                 updateLayoutOnChange={updateLayoutOnChange}
                 isDark={isDark}
                 onNodeClick={(n) => setSourceZone(n)}
-              />
+              /> */}
             </div>
           )}
         </main>

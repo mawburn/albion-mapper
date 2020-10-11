@@ -1,0 +1,10 @@
+.cyto {
+  border: 1px solid #90a4ae;
+  border-radius: 4px;
+  height: 720px;
+  width: 100%;
+}
+
+.__________cytoscape_container {
+  height: 100%;
+}

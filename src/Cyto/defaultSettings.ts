@@ -1,0 +1,33 @@
+const defaultSettings = {
+  animationDuration: 250,
+  pan: { x: 0, y: 0 },
+  minZoom: 0.15,
+  maxZoom: 1.5,
+  zoomingEnabled: true,
+  userZoomingEnabled: true,
+  panningEnabled: true,
+  userPanningEnabled: true,
+  boxSelectionEnabled: true,
+  selectionType: 'single',
+  touchTapThreshold: 8,
+  desktopTapThreshold: 4,
+  autolock: false,
+  autoungrabify: false,
+  autounselectify: false,
+  layout: {
+    name: 'cose-bilkent',
+    nodeDimensionsIncludeLabels: true,
+    tile: false,
+  },
+  headless: false,
+  styleEnabled: true,
+  hideEdgesOnViewport: false,
+  textureOnViewport: false,
+  motionBlur: false,
+  motionBlurOpacity: 0.2,
+  wheelSensitivity: 1,
+  pixelRatio: 'auto',
+  padding: 1000,
+};
+
+export default defaultSettings;
