@@ -106,6 +106,18 @@ function App() {
                 />
               </>
             )}
+            <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+              <a
+                style={{
+                  color: isDark ? '#D9A807' : '#9D6901',
+                  textDecoration: 'none',
+                  fontWeight: 700,
+                }}
+                href="https://www.twitch.tv/hypnocode"
+              >
+                Follow me & watch me code this on Twitch
+              </a>
+            </div>
           </aside>
           {(!!token || config?.publicRead) && (
             <div className="map-display">
