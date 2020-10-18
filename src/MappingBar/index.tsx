@@ -14,10 +14,11 @@ import { Button, FormControl, FormLabel, TextField } from '@material-ui/core';
 import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 
 import { DEFAULT_PORTAL_SIZE, DEFAULT_ZONE } from '../data/constants';
-import { PortalSize, Zone, ZoneLight } from '../types';
+import { PortalSize, Zone } from '../types';
 import PortalSizeSelector from './PortalSizeSelector';
 import useAddPortal from './useAddPortal';
 import ZoneSearch from './ZoneSearch';
+import { ZoneLight } from './zoneSearchUtils';
 
 interface MappingBarProps {
   zones: Zone[];

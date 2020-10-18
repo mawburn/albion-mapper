@@ -1,14 +1,14 @@
 import clone from 'lodash/cloneDeep';
 import isEqual from 'lodash/isEqual';
-import startsWith from 'lodash/startsWith';
 import React, { FC, useCallback, useRef, useState } from 'react';
 
 import { TextField } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import useEventListener from '@use-it/event-listener';
+import { FilterOptionsState } from '@material-ui/lab/useAutocomplete';
 
 import { DEFAULT_ZONE } from '../data/constants';
-import { ZoneLight } from '../types';
+import useEventListener from '../utils/hooks/useEventListener';
+import { filterZones, getMaxString, ZoneLight } from './zoneSearchUtils';
 
 interface ZoneSearchProps {
   zoneList: ZoneLight[];
@@ -74,12 +74,26 @@ const ZoneSearch: FC<ZoneSearchProps> = ({
       const currentVal = currentInput;
 
       if (e.code.toLowerCase() === 'arrowright' && currentVal) {
-        const maxStringLen = getMaxStrLen(currentZoneList, currentVal.length);
-
-        setCurrentInput(currentZoneList[0].name.substr(0, maxStringLen));
+        setCurrentInput(getMaxString(currentZoneList, currentInput));
       }
     },
     [currentZoneList, currentInput]
+  );
+
+  const filterOptions = useCallback(
+    (
+      options: ZoneLight[],
+      state: FilterOptionsState<ZoneLight>
+    ): ZoneLight[] => {
+      const filteredZones = filterZones(options, state);
+
+      if (currentInput && !isEqual(filteredZones, currentZoneList)) {
+        setCurrentZoneList(clone(filteredZones));
+      }
+
+      return filteredZones;
+    },
+    [currentInput, currentZoneList]
   );
 
   useEventListener('keydown', keyEventHandler, acRef.current);
@@ -96,15 +110,7 @@ const ZoneSearch: FC<ZoneSearchProps> = ({
       value={value}
       inputValue={currentInput}
       onInputChange={(_, value) => setCurrentInput(value)}
-      filterOptions={(options: ZoneLight[], state: object) => {
-        const filteredZones = filterZones(options, state);
-
-        if (currentInput && !isEqual(filteredZones, currentZoneList)) {
-          setCurrentZoneList(clone(filteredZones));
-        }
-
-        return filteredZones;
-      }}
+      filterOptions={filterOptions}
       getOptionSelected={(o: ZoneLight, val: ZoneLight) =>
         o.value === val.value
       }
